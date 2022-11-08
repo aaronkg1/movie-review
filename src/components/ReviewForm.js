@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "react-bootstrap/esm/Container";
 import FormGroup from "react-bootstrap/esm/FormGroup";
 import Form from "react-bootstrap/Form";
@@ -7,10 +7,12 @@ import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
 import { postMovieReview } from "../api";
 import { Link } from "react-router-dom";
+import { checkForToken } from "../actions/auth";
 
 const ReviewForm = ({ fetchNewData }) => {
 	const { id } = useParams();
-	const authStatus = useSelector((state) => state.auth.status);
+	const dispatch = useDispatch();
+	const authStatus = useSelector((state) => state.auth);
 	const [review, setReview] = useState({
 		text: "",
 		rating: false,
@@ -20,9 +22,15 @@ const ReviewForm = ({ fetchNewData }) => {
 		message: "",
 	});
 	const [rating, setRating] = useState([false, false, false, false, false]);
+
+	useEffect(() => {
+		dispatch(checkForToken());
+	}, [dispatch]);
+
 	const handleChange = (e) => {
 		setReview({ ...review, [e.target.name]: e.target.value });
 	};
+
 	const handleMouseOver = (index) => {
 		const newRatingArr = [
 			...Array(index + 1).fill(true),
@@ -30,6 +38,7 @@ const ReviewForm = ({ fetchNewData }) => {
 		];
 		setRating(newRatingArr);
 	};
+
 	const handleMouseExit = () => {
 		if (!review.rating) {
 			setRating(Array(5).fill(false));
@@ -62,7 +71,7 @@ const ReviewForm = ({ fetchNewData }) => {
 
 	return (
 		<>
-			{authStatus ? (
+			{authStatus.status ? (
 				<Container className="mt-4 review-form-container">
 					<Form>
 						<h2>Add Review</h2>
