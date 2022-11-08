@@ -137,7 +137,7 @@ const SingleMovie = () => {
 								<ReviewForm fetchNewData={fetchMovieData} />
 							</Col>
 						) : null}
-						<Col md="12">
+						<Col md="12" className="mb-4">
 							<DisplayReviews
 								reviews={movie.reviews}
 								fetchNewData={fetchMovieData}
