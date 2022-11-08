@@ -6,7 +6,7 @@ import { getTokenFromLocalStorage } from "../utils/auth";
 const baseUrl = "https://scene-it-project.herokuapp.com";
 
 export const searchMedia = (searchPhrase) =>
-	axios.get(`/search/${searchPhrase}`);
+	axios.get(`${baseUrl}/search/${searchPhrase}`);
 
 // Movies
 export const fetchMovieCount = () => axios.get(`${baseUrl}/movies/count`);
