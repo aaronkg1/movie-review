@@ -53,6 +53,7 @@ const Register = () => {
 							name="email"
 							value={userData.email}
 							onChange={handleChange}
+							required
 						></Form.Control>
 						{formErrors.email && <Form.Text>Email Invalid</Form.Text>}
 					</Form.Group>
@@ -64,6 +65,7 @@ const Register = () => {
 							name="username"
 							value={userData.username}
 							onChange={handleChange}
+							required
 						></Form.Control>
 						{formErrors.username && (
 							<Form.Text>{formErrors.username}</Form.Text>
@@ -77,6 +79,7 @@ const Register = () => {
 							name="password"
 							value={userData.password}
 							onChange={handleChange}
+							required
 						></Form.Control>
 						{formErrors.password && (
 							<Form.Text>{formErrors.password}</Form.Text>
@@ -92,6 +95,7 @@ const Register = () => {
 							name="passwordConfirmation"
 							value={userData.passwordConfirmation}
 							onChange={handleChange}
+							required
 						></Form.Control>
 						{formErrors.passwordConfirmation && (
 							<Form.Text>{formErrors.passwordConfirmation}</Form.Text>

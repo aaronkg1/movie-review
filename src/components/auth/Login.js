@@ -48,6 +48,7 @@ const Login = () => {
 							placeholder="Email"
 							defaultValue={userData.email}
 							onChange={handleChange}
+							required
 						/>
 					</Form.Group>
 					<Form.Group className="mb-2">
@@ -58,6 +59,7 @@ const Login = () => {
 							placeholder="Password"
 							defaultValue={userData.password}
 							onChange={handleChange}
+							required
 						/>
 					</Form.Group>
 					<Form.Group className="text-center mt-4">
