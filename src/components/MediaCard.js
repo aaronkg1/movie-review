@@ -35,12 +35,6 @@ const MediaCard = ({ media }) => {
 						</span>
 					</div>
 				</Card.Footer>
-				{/* <Card.Footer className="rating-footer">
-				<div sm="12" className="card-rating footer-col">
-						{avgRating && !Number.isNaN(Number(avgRating)) ?<><span>{avgRating}</span><span className="card-star">★</span></>:
-						<><span>{avgRating}</span><span className="card-star">☆</span></>}
-						</div>
-				</Card.Footer> */}
 			</Card>
 		</Link>
 	);
