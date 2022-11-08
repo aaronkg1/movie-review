@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../actions/auth";
 
 const Login = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const authStatus = useSelector((state) => state.auth.status);
 	const [userData, setUserData] = useState({
 		email: "",
 		password: "",
@@ -26,7 +27,10 @@ const Login = () => {
 		e.preventDefault();
 		try {
 			dispatch(login(userData));
-			navigate("/movies");
+			if (authStatus) navigate("/movies");
+			else {
+				setFormError("Login failed");
+			}
 		} catch (err) {
 			setFormError(err.response.data.message);
 		}
