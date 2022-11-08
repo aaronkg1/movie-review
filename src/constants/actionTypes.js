@@ -1,0 +1,15 @@
+export const RECEIVED_MEDIA = "RECEIVED_MEDIA";
+export const ERROR_SEARCH = "ERROR_SEARCH";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const ERROR_AUTH = "ERROR_AUTH";
+export const MOVIE_COUNT = "MOVIE_COUNT";
+export const CREATED_MOVIE = "CREATED_MOVIE";
+export const REQUESTING_MOVIES = "REQUESTING_MOVIES";
+export const RECEIVED_MOVIES = "RECEIVED_MOVIES";
+export const ERROR_MOVIES = "ERROR_MOVIES";
+export const CREATED_SHOW = "CREATED_SHOW";
+export const SHOW_COUNT = "SHOW_COUNT";
+export const REQUESTING_SHOWS = "REQUESTING_SHOWS";
+export const RECEIVED_SHOWS = "RECEIVED_SHOWS";
+export const ERROR_SHOWS = "ERROR_SHOWS";

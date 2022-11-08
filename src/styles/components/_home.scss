@@ -1,0 +1,27 @@
+.hero {
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Montserrat", sans-serif;
+	.hero-overlay {
+		.hero-header {
+			font-weight: bold;
+		}
+		.lead {
+			font-size: 2em;
+		}
+		color: $dark-grey;
+		background-color: white;
+		padding: 30px;
+		border-radius: 8px;
+	}
+	input {
+		background-color: $dark-grey;
+		color: white;
+		&:focus {
+			background-color: $dark-grey;
+			color: white;
+		}
+	}
+}

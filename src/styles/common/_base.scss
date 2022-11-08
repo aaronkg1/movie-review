@@ -1,0 +1,26 @@
+body {
+	color: white;
+}
+
+.site-wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: $white;
+}
+
+.spinner {
+	width: 30px;
+}
+
+.error {
+	text-align: center;
+}
+
+.nav-link {
+	color: white;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}

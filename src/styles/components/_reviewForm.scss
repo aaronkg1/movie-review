@@ -1,0 +1,10 @@
+.review-form-container {
+	background-color: $dark-grey-opaque;
+	border-radius: 10px;
+	padding: 10px;
+	.rating-star {
+		font-size: 30px;
+		color: $warning;
+		cursor: pointer;
+	}
+}

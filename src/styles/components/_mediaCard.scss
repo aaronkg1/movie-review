@@ -1,0 +1,36 @@
+.card {
+	font-size: 1.1em;
+	font-family: "Montserrat", sans-serif;
+	.card-image {
+		img {
+			object-fit: cover;
+		}
+	}
+
+	.card-footer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		color: $dark-grey;
+	}
+	.card-header {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		.card-star {
+			color: $warning;
+		}
+	}
+
+	.rating-header {
+		background-color: $dark-grey;
+		color: white;
+	}
+
+	.card-rating {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	}
+}

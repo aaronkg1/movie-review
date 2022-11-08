@@ -1,0 +1,59 @@
+$primary: rgb(103, 155, 251);
+$secondary: rgb(0, 158, 194);
+$secondary-background: rgb(250, 250, 250);
+$grey: rgb(66, 68, 73);
+$dark-grey: rgb(51, 53, 57);
+$dark-grey-opaque: rgba(51, 53, 57, 0.369);
+$complimentary: #03fcda;
+$custom-one: #03fcda;
+$custom-two: #e01f3d;
+
+$gradients: () !default;
+$gradients: map-merge(
+	(
+		chill: linear-gradient(135deg, #09e485 0%, #0291e3 100%),
+		warm: linear-gradient(135deg, #f2cd48 0%, #fd803f 100%),
+		hot: linear-gradient(135deg, #f9445a 0%, #fd803f 100%),
+		cold: linear-gradient(135deg, #8019c6 0%, #2f93cc 100%),
+		custom: linear-gradient(167deg, $custom-one 0%, $custom-two 100%),
+		custom-dark: linear-gradient(135deg, $dark-grey 0%, white 100%),
+	),
+	$gradients
+);
+
+// Gradient backgrounds
+@mixin bg-gradient($parent, $gradient) {
+	#{$parent} {
+		background: $gradient;
+	}
+}
+// Gradient text
+@mixin text-gradient($parent, $gradient) {
+	#{$parent} {
+		background-image: $gradient;
+		color: transparent;
+		-webkit-background-clip: text;
+		background-clip: text;
+	}
+}
+// Gradient text
+@mixin text-gradient($parent, $gradient) {
+	#{$parent} {
+		background-image: $gradient;
+		color: transparent;
+		-webkit-background-clip: text;
+		background-clip: text;
+	}
+}
+.text-gradient- {
+	color: red;
+}
+
+// Gradient Classes
+@each $gradient, $value in $gradients {
+	@include bg-gradient(".bg-gradient-#{$gradient}", $value);
+}
+// Gradient Classes
+@each $gradient, $value in $gradients {
+	@include text-gradient(".text-gradient-#{$gradient}", $value);
+}

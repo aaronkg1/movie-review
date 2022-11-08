@@ -1,0 +1,23 @@
+nav {
+	.nav-item {
+		font-size: 1.3em;
+		font-weight: 500;
+		.btn {
+			color: black;
+			white-space: nowrap;
+		}
+		a {
+			text-decoration: none;
+			color: white;
+		}
+	}
+	background-color: $dark-grey;
+	.input-group-text {
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 0;
+	}
+}
+
+.search-bar-container {
+	flex-basis: 1;
+}

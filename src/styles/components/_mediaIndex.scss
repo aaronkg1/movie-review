@@ -1,0 +1,43 @@
+.media-link {
+	text-decoration: none;
+	color: $dark-grey;
+	&:hover {
+		color: black;
+		text-decoration: underline;
+	}
+}
+.genre-list {
+	display: block;
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+	@media screen and (max-width: 992px) {
+		display: none;
+	}
+}
+.genre-dropdown {
+	display: none;
+	@media screen and (max-width: 991px) {
+		display: block;
+	}
+}
+
+.page-numbers {
+	list-style: none;
+	text-align: center;
+	padding: 0 0 10px 0;
+	margin: 0;
+	li {
+		padding: 0;
+		margin: 0 3px 0 3px;
+		cursor: pointer;
+		display: inline;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+.search-term {
+	color: $dark-grey;
+}

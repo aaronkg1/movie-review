@@ -1,0 +1,28 @@
+.review {
+	background-color: $secondary-background;
+	border-radius: 10px;
+	padding: 20px;
+	font-size: 1.5em;
+	color: $dark-grey;
+	a {
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.review-info {
+		color: lighten($color: $dark-grey, $amount: 20%);
+		display: flex;
+		gap: 10px;
+	}
+	.edit-review-btn {
+		margin-left: auto;
+	}
+	.review-date {
+		margin-left: 10px;
+	}
+	p {
+		padding: 0;
+		margin: 0;
+	}
+}
