@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Container from "react-bootstrap/esm/Container";
 import FormGroup from "react-bootstrap/esm/FormGroup";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
 import { postMovieReview } from "../api";
+import { Link } from "react-router-dom";
 
 const ReviewForm = ({ fetchNewData }) => {
 	const { id } = useParams();
+	const authStatus = useSelector((state) => state.auth.status);
 	const [review, setReview] = useState({
 		text: "",
 		rating: false,
@@ -58,62 +61,68 @@ const ReviewForm = ({ fetchNewData }) => {
 	};
 
 	return (
-		<Container className="mt-4 review-form-container">
-			<Form>
-				<h2>Add Review</h2>
-				<Form.Group className="mb-2">
-					<Form.Label htmlFor="rating">Rating</Form.Label>
-					<div onMouseLeave={handleMouseExit}>
-						{rating.map((star, index) => {
-							return star ? (
-								<span
-									className="rating-star filled"
-									key={`rating-${index}`}
-									onMouseEnter={() => {
-										handleMouseOver(index);
-									}}
-									onClick={() => {
-										handleClick(index);
-									}}
-								>
-									★
-								</span>
-							) : (
-								<span
-									className="rating-star"
-									key={`rating-${index}`}
-									onMouseEnter={() => {
-										handleMouseOver(index);
-									}}
-									onClick={() => {
-										handleClick(index);
-									}}
-								>
-									☆
-								</span>
-							);
-						})}
-					</div>
-				</Form.Group>
-				<Form.Group className="mb-2">
-					<Form.Label htmlFor="text">Review</Form.Label>
-					<Form.Control
-						as="textarea"
-						name="text"
-						placeholder="What did you think?"
-						value={review.id}
-						onChange={handleChange}
-						maxLength={300}
-					/>
-				</Form.Group>
-				<FormGroup className="mb-2">
-					<Button variant="warning" type="submit" onClick={handleSubmit}>
-						Submit
-					</Button>
-				</FormGroup>
-				{hasError.status && <span>{hasError.message}</span>}
-			</Form>
-		</Container>
+		<>
+			{authStatus ? (
+				<Container className="mt-4 review-form-container">
+					<Form>
+						<h2>Add Review</h2>
+						<Form.Group className="mb-2">
+							<Form.Label htmlFor="rating">Rating</Form.Label>
+							<div onMouseLeave={handleMouseExit}>
+								{rating.map((star, index) => {
+									return star ? (
+										<span
+											className="rating-star filled"
+											key={`rating-${index}`}
+											onMouseEnter={() => {
+												handleMouseOver(index);
+											}}
+											onClick={() => {
+												handleClick(index);
+											}}
+										>
+											★
+										</span>
+									) : (
+										<span
+											className="rating-star"
+											key={`rating-${index}`}
+											onMouseEnter={() => {
+												handleMouseOver(index);
+											}}
+											onClick={() => {
+												handleClick(index);
+											}}
+										>
+											☆
+										</span>
+									);
+								})}
+							</div>
+						</Form.Group>
+						<Form.Group className="mb-2">
+							<Form.Label htmlFor="text">Review</Form.Label>
+							<Form.Control
+								as="textarea"
+								name="text"
+								placeholder="What did you think?"
+								value={review.id}
+								onChange={handleChange}
+								maxLength={300}
+							/>
+						</Form.Group>
+						<FormGroup className="mb-2">
+							<Button variant="warning" type="submit" onClick={handleSubmit}>
+								Submit
+							</Button>
+						</FormGroup>
+						{hasError.status && <span>{hasError.message}</span>}
+					</Form>
+				</Container>
+			) : (
+				<Link to="/login">Login to post review</Link>
+			)}
+		</>
 	);
 };
 
