@@ -30,7 +30,7 @@ const ProfileReviews = ({ reviews }) => {
 		);
 	}, [reviews]);
 	return (
-		<Container className="mt-4 reviews">
+		<Container className="mt-4 mb-4 reviews">
 			{sortedReviews.length ? (
 				<Row>
 					{editReviewClicked.owner ? (
