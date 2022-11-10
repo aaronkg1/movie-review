@@ -71,9 +71,9 @@ const EditReviewForm = ({ reviewToEdit, hideForm, fetchNewData }) => {
 	};
 
 	return (
-		<Container className="mt-2">
+		<Container className="mt-4 review-form-container">
 			<Form>
-				<h2>Edit Review</h2>
+				<h2>Add Review</h2>
 				<Form.Group className="mb-2">
 					<Form.Label htmlFor="rating">Rating</Form.Label>
 					<div onMouseLeave={handleMouseExit}>
@@ -114,17 +114,17 @@ const EditReviewForm = ({ reviewToEdit, hideForm, fetchNewData }) => {
 						as="textarea"
 						name="text"
 						placeholder="What did you think?"
-						value={review.text}
+						value={review.id}
 						onChange={handleChange}
 						maxLength={300}
 					/>
 				</Form.Group>
-				{hasError.status && <span>{hasError.message}</span>}
 				<FormGroup className="mb-2">
 					<Button variant="warning" type="submit" onClick={handleSubmit}>
 						Submit
 					</Button>
 				</FormGroup>
+				{hasError.status && <span>{hasError.message}</span>}
 			</Form>
 		</Container>
 	);
