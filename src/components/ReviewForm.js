@@ -5,11 +5,11 @@ import FormGroup from "react-bootstrap/esm/FormGroup";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
-import { postMovieReview } from "../api";
+import { postMovieReview, postShowReview } from "../api";
 import { Link } from "react-router-dom";
 import { checkForToken } from "../actions/auth";
 
-const ReviewForm = ({ fetchNewData }) => {
+const ReviewForm = ({ fetchNewData, mediaType }) => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const authStatus = useSelector((state) => state.auth);
@@ -65,8 +65,13 @@ const ReviewForm = ({ fetchNewData }) => {
 				message: "Review must have rating and text",
 			});
 		}
-		const reviewSent = await postMovieReview(review, id);
-		if (reviewSent.status === 202) fetchNewData();
+		if (mediaType === "movie") {
+			const reviewSent = await postMovieReview(review, id);
+			if (reviewSent.status === 202) fetchNewData();
+		} else {
+			const reviewSent = await postShowReview(review, id);
+			if (reviewSent.status === 202) fetchNewData();
+		}
 	};
 
 	return (
