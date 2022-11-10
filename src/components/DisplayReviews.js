@@ -6,9 +6,11 @@ import format from "date-fns/format";
 import { getPayLoad } from "../utils/auth";
 import Button from "react-bootstrap/esm/Button";
 import EditReviewForm from "./EditReviewForm";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { deleteMovieReview, deleteShowReview } from "../api";
 
-const DisplayReviews = ({ reviews, fetchNewData }) => {
+const DisplayReviews = ({ mediaType, reviews, fetchNewData }) => {
+	const { id } = useParams();
 	const [editReviewClicked, setEditReviewClicked] = useState({});
 	const [sortedReviews, setSortedReviews] = useState([]);
 	const generateStars = (rating) => {
@@ -29,6 +31,16 @@ const DisplayReviews = ({ reviews, fetchNewData }) => {
 			})
 		);
 	}, [reviews]);
+
+	const deleteReview = async (reviewId) => {
+		if (mediaType === "movie") {
+			await deleteMovieReview(id, reviewId);
+		} else {
+			await deleteShowReview(id, reviewId);
+		}
+		fetchNewData();
+	};
+
 	return (
 		<Container className="mt-2 reviews p-0">
 			<h3>Reviews</h3>
@@ -60,14 +72,25 @@ const DisplayReviews = ({ reviews, fetchNewData }) => {
 											{format(new Date(review.updatedAt), "dd/MM/yyyy")}
 										</span>
 										{review.owner._id === getPayLoad().sub ? (
-											<Button
-												className="edit-review-btn"
-												onClick={() => {
-													setEditReviewClicked(review);
-												}}
-											>
-												Edit
-											</Button>
+											<>
+												<Button
+													className="edit-review-btn"
+													onClick={() => {
+														setEditReviewClicked(review);
+													}}
+												>
+													Edit
+												</Button>
+												<Button
+													className="delete-review-btn"
+													onClick={() => {
+														deleteReview(review._id);
+													}}
+													variant="danger"
+												>
+													Delete
+												</Button>
+											</>
 										) : null}
 									</Col>
 									<hr />
