@@ -68,7 +68,32 @@ export const postMovieReview = (review, id) =>
 		},
 	});
 export const editMovieReview = (data, reviewId, id) =>
-	axios.put(`${baseUrl}/${id}/reviews/${reviewId}`, data, {
+	axios.put(`${baseUrl}/movies/${id}/reviews/${reviewId}`, data, {
+		headers: {
+			Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+		},
+	});
+export const deleteMovieReview = (movieId, reviewId) =>
+	axios.delete(`${baseUrl}/movies/${movieId}/reviews/${reviewId}`, {
+		headers: {
+			Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+		},
+	});
+
+export const postShowReview = (review, id) =>
+	axios.post(`${baseUrl}/tvshows/${id}/reviews`, review, {
+		headers: {
+			Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+		},
+	});
+export const editShowReview = (data, reviewId, id) =>
+	axios.put(`${baseUrl}/tvshows/${id}/reviews/${reviewId}`, data, {
+		headers: {
+			Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+		},
+	});
+export const deleteShowReview = (movieId, reviewId) =>
+	axios.delete(`${baseUrl}/tvshows/${movieId}/reviews/${reviewId}`, {
 		headers: {
 			Authorization: `Bearer ${getTokenFromLocalStorage()}`,
 		},
