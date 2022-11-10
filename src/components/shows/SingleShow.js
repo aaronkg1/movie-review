@@ -25,7 +25,11 @@ const SingleShow = () => {
 		try {
 			const { data } = await fetchShow(id);
 			setShow(data);
-			setReviewPosted(true);
+			if (
+				data.reviews.some((review) => review.owner._id === getPayLoad().sub)
+			) {
+				setReviewPosted(true);
+			} else setReviewPosted(false);
 		} catch (error) {
 			setHasError({ status: true, message: error.message });
 		}
@@ -126,13 +130,17 @@ const SingleShow = () => {
 						</Col>
 						{!reviewPosted ? (
 							<Col md="12">
-								<ReviewForm fetchNewData={fetchShowData} />
+								<ReviewForm
+									fetchNewData={fetchShowData}
+									mediaType={show.type}
+								/>
 							</Col>
 						) : null}
 						<Col md="12" className="mb-4">
 							<DisplayReviews
 								reviews={show.reviews}
 								fetchNewData={fetchShowData}
+								mediaType={show.type}
 							/>
 						</Col>
 					</Row>

@@ -24,7 +24,9 @@ const SingleMovie = () => {
 	const fetchMovieData = useCallback(async () => {
 		const { data } = await fetchMovie(id);
 		setMovie(data);
-		setReviewPosted(true);
+		if (data.reviews.some((review) => review.owner._id === getPayLoad().sub)) {
+			setReviewPosted(true);
+		} else setReviewPosted(false);
 	}, [id]);
 	const imageToLoad = movie.image ? (
 		<img
@@ -134,13 +136,17 @@ const SingleMovie = () => {
 						</Col>
 						{!reviewPosted ? (
 							<Col md="12">
-								<ReviewForm fetchNewData={fetchMovieData} />
+								<ReviewForm
+									fetchNewData={fetchMovieData}
+									mediaType={movie.type}
+								/>
 							</Col>
 						) : null}
 						<Col md="12" className="mb-4">
 							<DisplayReviews
 								reviews={movie.reviews}
 								fetchNewData={fetchMovieData}
+								mediaType={movie.type}
 							/>
 						</Col>
 					</Row>
